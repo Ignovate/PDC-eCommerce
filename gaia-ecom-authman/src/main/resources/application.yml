@@ -1,0 +1,51 @@
+
+logging:
+    level:
+        ROOT: INFO
+        com.lectrefy: INFO
+
+spring:
+    application:
+        name: gaia-ecom-authman
+    profiles:
+        active: dev
+        include:
+    jackson:
+        serialization.indent_output: true
+        
+    datasource:
+        type: com.zaxxer.hikari.HikariDataSource
+        url: jdbc:mysql://localhost:3306/igecom?useSSL=false&allowPublicKeyRetrieval=true
+        username: designer
+        password: designer
+        hikari:
+            auto-commit: false
+            data-source-properties:
+                cachePrepStmts: true
+                prepStmtCacheSize: 250
+                prepStmtCacheSqlLimit: 2048
+                useServerPrepStmts: true
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        database: MYSQL
+        show-sql: true
+        properties:
+            hibernate.id.new_generator_mappings: true
+            hibernate.connection.provider_disables_autocommit: true
+            hibernate.cache.use_second_level_cache: false
+            hibernate.cache.use_query_cache: false
+            hibernate.generate_statistics: false
+            
+server:
+    port: 8082
+    servlet:
+        context-path: /${spring.application.name}
+        
+token:
+  expiry: 2700000
+  
+authman:
+  signkey : QzW5477L3nqZN5X4ujKi1g==
+  
+cache:
+  timeout : 45
